@@ -1,0 +1,31 @@
+1) Lo primero es crear la carpeta node
+2) Dentro de node => npm init. Que te va a crear la el package.json. Le agregamos
+"type": "module" (porque como trabajamos con react que trabaja con import)
+3) Instalamos los paquetes npm i express, cors, mysql2 (y no el mysql solo pq 
+mysql2 trabaja con sequelize), sequelize.
+4) Creamos las carpetas => controllers, database, routes, models y el app.js
+5) Adentro de controllores => BlogController.js
+5) Adentro de database => db.js
+6) Adentro de models => BlogModel.js
+7) Adentro de routes => routes.js
+
+. Para la base de datos usamos
+. phpMyAdmin => El entorno para trabajar. Es el cliente.
+. MySQL => El servidor.
+1) Creamos la base de datos con Nueva => le ponemos el nombre database_app
+2) Nombre => blogs - colum => 5
+3) Completamos las columnas => El id es autoincremental (seleccionar el cuadrado)
+4) Ver los campos porque hay campos que te pide la documental (createAt, updateAt)
+5) Guardar
+6) Vamos a la pestana de SQL, borramos su contenido y ponemos el script =>
+INSERT INTO blogs (id, title, content) VALUES
+(1, 'Titulo 1', 'Contenido de mi primer post'),
+(2, 'Titulo 2', 'contenido de mi segundo post');
+7) Ponemos continuar
+8) Vamos a examinar y ya lo tenemos
+9) Ya tenemos la base de datos
+10) Hacemos la Instalacion de la base de datos en db.js
+11) Trabajamos en el Blog Models.js => Representa una tabla en en la base de datos
+12) Trabajamos con BlogControllers.js
+13) Trabajamos con routes.js
+14) Trabajamos con app.js
