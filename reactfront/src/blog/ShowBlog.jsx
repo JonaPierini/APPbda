@@ -19,8 +19,7 @@ export const ShowBlog = () => {
 
   const onSubmitData = async (e) => {
      e.preventDefault()
-     console.log('click')
-    const resultado = await fetch(`http://localhost:8000/blogs`, 
+    const resultado = await fetch(URL, 
       {method:'POST', 
       body:JSON.stringify(
         {
@@ -37,11 +36,10 @@ export const ShowBlog = () => {
     } 
     const data = await resultado.json();
     setBlogs([...blogs, {title: title, content:content, id: data.id}])
-    setTitle('')
-    setContent('')
+    setTitle("")
+    setContent("")
   };
 
-  console.log(blogs)
   const getBlogs = async () => {
     fetch(URL)
       .then((response) => response.json())
@@ -74,12 +72,14 @@ export const ShowBlog = () => {
               className="form-control"
               placeholder="Title"
               onChange={onChangeTitle}
+              value={title}
             />
             <input
               type="text"
               className="form-control mt-1"
               placeholder="Conten"
               onChange={onChangeContent}
+              value={content}
             />
             <div className="col-auto">
               <button className="btn btn-primary mt-3" onClick={onSubmitData}>
