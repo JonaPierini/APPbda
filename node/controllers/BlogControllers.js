@@ -32,6 +32,7 @@ export const createBlog = async (req, res) => {
         await BlogModel.create(req.body)
         .then((newBlog)=> {
             id = newBlog.id
+            
         })
         res.json({
             'massage': 'Registro Creado con exito',

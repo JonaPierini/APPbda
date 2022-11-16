@@ -4,10 +4,12 @@
 import db from "../database/db.js";
 // importamos sequelize
 import {DataTypes} from "sequelize";
+console.log(DataTypes.DATE.typ)
 
 const BlogModel = db.define('blogs', {
     title: {type: DataTypes.STRING},
-    content: {type: DataTypes.STRING}
+    content: {type: DataTypes.STRING},
+    nowDate : {type: DataTypes.DATE}
 })
-
+ 
 export default BlogModel

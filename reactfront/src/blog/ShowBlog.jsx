@@ -35,6 +35,7 @@ export const ShowBlog = () => {
       return
     } 
     const data = await resultado.json();
+    console.log(data.nowDate)
     setBlogs([...blogs, {title: title, content:content, id: data.id}])
     setTitle("")
     setContent("")
@@ -60,6 +61,8 @@ export const ShowBlog = () => {
     }
     setBlogs(blogs.filter((elem) => elem.id !== id));
   };
+
+  console.log(blogs)
 
   return (
     <div className="container">
@@ -92,7 +95,8 @@ export const ShowBlog = () => {
               <tr>
                 <th>Title</th>
                 <th>Conten</th>
-                <th>Actions</th>
+                <th>Date</th>
+                <th>Action</th>
               </tr>
             </thead>
             <tbody>
@@ -100,6 +104,7 @@ export const ShowBlog = () => {
                 <tr key={blog.id}>
                   <td>{blog.title}</td>
                   <td>{blog.content}</td>
+                  <td>{blog.nowDate}</td>
                   <td>
                     <button
                       className="btn btn-danger"
