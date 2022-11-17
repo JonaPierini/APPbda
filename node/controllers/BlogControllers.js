@@ -28,15 +28,18 @@ export const getBlog = async (req, res) => {
 // crear un registro
 export const createBlog = async (req, res) => {
     let id;
+    let nowDate;
     try{
         await BlogModel.create(req.body)
         .then((newBlog)=> {
             id = newBlog.id
-            
+            //porque no puede ser newBlog.nowDate
+            nowDate = newBlog.createdAt
         })
         res.json({
             'massage': 'Registro Creado con exito',
-            id:id
+            id:id,
+            nowDate:nowDate,
         })
     } catch(error) {
         res.json({message: error.message})

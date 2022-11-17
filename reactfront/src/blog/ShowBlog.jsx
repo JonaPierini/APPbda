@@ -8,7 +8,8 @@ export const ShowBlog = () => {
   const [blogs, setBlogs] = useState([]);
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("")
-
+ 
+  
   const onChangeTitle = (e) => {
     setTitle(e.target.value)
   };
@@ -16,6 +17,7 @@ export const ShowBlog = () => {
   const onChangeContent = (e) => {
     setContent(e.target.value)
   }
+ 
 
   const onSubmitData = async (e) => {
      e.preventDefault()
@@ -24,7 +26,7 @@ export const ShowBlog = () => {
       body:JSON.stringify(
         {
         title:title, 
-        content:content, 
+        content:content,       
         }), 
         headers: {
           'Content-Type':'application/json',
@@ -34,17 +36,23 @@ export const ShowBlog = () => {
       console.log('fallo')
       return
     } 
-    const data = await resultado.json();
-    console.log(data.nowDate)
-    setBlogs([...blogs, {title: title, content:content, id: data.id}])
+    const data =  await resultado.json();
+    setBlogs([...blogs, {
+      title: title, 
+      content:content, 
+      id: data.id, 
+      nowDate:data.nowDate}
+    ])
+     
     setTitle("")
     setContent("")
+    
   };
 
   const getBlogs = async () => {
     fetch(URL)
       .then((response) => response.json())
-      .then((data) => setBlogs(data));
+      .then((data) => setBlogs(data))
   };
 
   useEffect(() => {
@@ -62,7 +70,7 @@ export const ShowBlog = () => {
     setBlogs(blogs.filter((elem) => elem.id !== id));
   };
 
-  console.log(blogs)
+ console.log(blogs)
 
   return (
     <div className="container">
@@ -96,7 +104,7 @@ export const ShowBlog = () => {
                 <th>Title</th>
                 <th>Conten</th>
                 <th>Date</th>
-                <th>Action</th>
+                <th>Accion</th>
               </tr>
             </thead>
             <tbody>
@@ -117,6 +125,9 @@ export const ShowBlog = () => {
               ))}
             </tbody>
           </table>
+          <div className="col-auto">
+               <h3>Totalgfdfggagasdgsaads </h3>
+          </div>
         </div>
       </div>
     </div>
