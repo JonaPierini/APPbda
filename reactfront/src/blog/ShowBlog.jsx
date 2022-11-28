@@ -9,6 +9,12 @@ export const ShowBlog = () => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("")
  
+
+ 
+ 
+   
+  const [count, setCount] = useState(0)
+ 
   
   const onChangeTitle = (e) => {
     setTitle(e.target.value)
@@ -26,7 +32,8 @@ export const ShowBlog = () => {
       body:JSON.stringify(
         {
         title:title, 
-        content:content,       
+        content:content, 
+            
         }), 
         headers: {
           'Content-Type':'application/json',
@@ -37,23 +44,36 @@ export const ShowBlog = () => {
       return
     } 
     const data =  await resultado.json();
+   
+     
     setBlogs([...blogs, {
       title: title, 
       content:content, 
       id: data.id, 
-      nowDate:data.nowDate}
+      // createdAt: data.createdAt,
+      fecha:data.fecha
+      }
     ])
      
     setTitle("")
     setContent("")
-    
+    setCount(blogs.length + 1)
   };
+
+  
+ 
+   
 
   const getBlogs = async () => {
     fetch(URL)
       .then((response) => response.json())
-      .then((data) => setBlogs(data))
+      .then((data) =>{ 
+        setBlogs(data)
+        setCount(data.length)
+      })
   };
+
+   
 
   useEffect(() => {
     getBlogs();
@@ -68,9 +88,9 @@ export const ShowBlog = () => {
       return;
     }
     setBlogs(blogs.filter((elem) => elem.id !== id));
+    setCount(blogs.length - 1)
   };
-
- console.log(blogs)
+ 
 
   return (
     <div className="container">
@@ -104,7 +124,9 @@ export const ShowBlog = () => {
                 <th>Title</th>
                 <th>Conten</th>
                 <th>Date</th>
+                {/* <th>Prueba</th> */}
                 <th>Accion</th>
+                
               </tr>
             </thead>
             <tbody>
@@ -112,7 +134,8 @@ export const ShowBlog = () => {
                 <tr key={blog.id}>
                   <td>{blog.title}</td>
                   <td>{blog.content}</td>
-                  <td>{blog.nowDate}</td>
+                  <td>Fecha: {new Date(blog.fecha).toString() }</td>
+                  {/* <td>{blog.fecha}</td> */}
                   <td>
                     <button
                       className="btn btn-danger"
@@ -126,7 +149,7 @@ export const ShowBlog = () => {
             </tbody>
           </table>
           <div className="col-auto">
-               <h3>Totalgfdfggagasdgsaads </h3>
+               <h3>Cantidad de Tareas: {count} </h3>
           </div>
         </div>
       </div>

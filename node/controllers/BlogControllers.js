@@ -6,7 +6,8 @@ import BlogModel from "../models/BlogModels.js";
 //mostrar todos los registros
 export const getAllBlogs = async (req, res) => {
     try {
-        const blogs = await BlogModel.findAll() //Te trae todo
+        //Te trae todo
+        const blogs = await BlogModel.findAll()
         res.json(blogs)
     } catch (error) {
         res.json({message: error.message})
@@ -27,19 +28,27 @@ export const getBlog = async (req, res) => {
 
 // crear un registro
 export const createBlog = async (req, res) => {
+    
     let id;
-    let nowDate;
+    // let fecha;
+    let createdAt
+    let fecha
+  
     try{
         await BlogModel.create(req.body)
         .then((newBlog)=> {
             id = newBlog.id
-            //porque no puede ser newBlog.nowDate
-            nowDate = newBlog.createdAt
+            // fecha = newBlog.fecha
+            fecha = newBlog.fecha
+            createdAt = newBlog.createdAt
+            
         })
         res.json({
             'massage': 'Registro Creado con exito',
             id:id,
-            nowDate:nowDate,
+            fecha:fecha,
+            createdAt:createdAt,
+        
         })
     } catch(error) {
         res.json({message: error.message})
