@@ -8,13 +8,9 @@ export const ShowBlog = () => {
   const [blogs, setBlogs] = useState([]);
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("")
- 
-
- 
- 
-   
   const [count, setCount] = useState(0)
- 
+  
+  const [month, setMonth] = useState('')
   
   const onChangeTitle = (e) => {
     setTitle(e.target.value)
@@ -70,9 +66,15 @@ export const ShowBlog = () => {
       .then((data) =>{ 
         setBlogs(data)
         setCount(data.length)
+        const prueba = data.map((elem)=> (elem.fecha))
+        const pruebaDos = prueba.toString()
+        const pruebaTres = pruebaDos.slice(5,7)
+        console.log(pruebaTres)
+        setMonth(pruebaTres)       
       })
   };
 
+  
    
 
   useEffect(() => {
@@ -150,6 +152,9 @@ export const ShowBlog = () => {
           </table>
           <div className="col-auto">
                <h3>Cantidad de Tareas: {count} </h3>
+          </div>
+          <div className="col-auto">
+               <h3>Número del mes: {month} </h3>
           </div>
         </div>
       </div>
